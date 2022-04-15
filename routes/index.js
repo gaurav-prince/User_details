@@ -57,7 +57,7 @@ router.get('/viewUsers', (req, res) => {
   }
 });
 
-  router.post('/updateUser/:id', (req, res) => {
+router.post('/updateUser/:id', (req, res) => {
     try {
       let userId = req.params.id;
       let incomingData = req.body;
