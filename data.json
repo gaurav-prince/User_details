@@ -1,1 +1,1 @@
-[{"name":"John Doe","customer":"Dell","email":"abc@xyz.com","isTrial":"N","roles":["User","Customer Admin"],"id":5784},{"name":"Jane Doe","customer":"Dell","email":"abc@xyz.com","isTrial":"N","roles":["User","Customer"],"id":6655}]
+[{"name":"John Doe","customer":"Dell","email":"abc@xyz.com","isTrial":"N","username":"abcd","roles":["User","Customer Admin"],"id":5784},{"name":"Jane Doe","customer":"Dell","email":"abc@xyz.com","isTrial":"N","username":"xyz","roles":["User","Customer"],"id":6655}]
