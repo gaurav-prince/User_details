@@ -1,0 +1,33 @@
+name: Enforce PR Comments
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+      - ready_for_review
+
+jobs:
+  enforce-comments:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for Comments
+        id: comment-check
+        run: |
+          comments=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/comments | jq -r '. | length')
+          echo "Comments on this PR: $comments"
+          if [ "$comments" -eq 0 ]; then
+            echo "Error: This PR requires at least one comment before closing."
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+
+      - name: Complete
+        if: steps.comment-check.outcome == 'success'
+        run: echo "PR has at least one comment."
